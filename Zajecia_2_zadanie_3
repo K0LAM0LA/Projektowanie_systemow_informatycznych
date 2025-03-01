@@ -1,0 +1,37 @@
+#Analiza przemowy w 2021
+W tym roku Joe Biden, głównie mówił do "ludu", najczęściej powtarzającymi się słowami było: american, americans, job, plans, act, country, families, itd., co teoretycznie wskazuje, że w swojej wypowiedzi główny nacisk kładł na obywateli. 
+
+#Analiza przemowy w 2024
+W tym roku Joe Biden, głównie mówił o sobie, najczęściej powtarzającymi się słowami było: im, american, future, president, ive itd., co teoretycznie wskazuje, na to, że bardziej mu zależało na tym, żeby ponownie zostać wybranym niż na obywatelach swojego państwa. 
+
+Kod:
+
+install.packages("wordcloud")
+library(wordcloud)
+library(qdap)
+
+?wordcloud
+
+text <- readLines(file.choose())
+text
+
+frequent_terms <- freq_terms(text)
+frequent_terms
+frequent_terms <- freq_terms(text, stopwords = Top200Words)
+plot(frequent_terms)
+
+wordcloud(frequent_terms$WORD, frequent_terms$FREQ)
+
+wordcloud(frequent_terms$WORD, frequent_terms$FREQ, min.freq = 4)
+
+wordcloud(frequent_terms$WORD, frequent_terms$FREQ, max.words = 5)
+
+wordcloud(frequent_terms$WORD, frequent_terms$FREQ, min.freq = 4, colors = brewer.pal(9,"Blues"))
+wordcloud(frequent_terms$WORD, frequent_terms$FREQ, min.freq = 4, colors = brewer.pal(9,"Reds"))
+wordcloud(frequent_terms$WORD, frequent_terms$FREQ, min.freq = 4, colors = brewer.pal(9,"Greens"))
+
+wordcloud(frequent_terms$WORD, frequent_terms$FREQ, min.freq = 4, colors = brewer.pal(8,"Dark2"))
+
+wordcloud(frequent_terms$WORD, frequent_terms$FREQ, max.words = 5, colors = brewer.pal(8,"Accent"))
+#?brewer.pal
+#brewer.pal.info
